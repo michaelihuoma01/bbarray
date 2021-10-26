@@ -18,3 +18,13 @@ Future<List<Album>> getAlbumRepo() async {
     return Album.fromJSON(item);
   }).toList();
 }
+
+Future<int> addAlbumImage(Map data) async {
+  var res = await http.put(
+    Uri.parse("https://jsonplaceholder.typicode.com/photos/1"),
+    headers: headers,
+    body: json.encode(data),
+  );
+
+  return res.statusCode;
+}

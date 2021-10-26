@@ -8,60 +8,8 @@ class PostController extends ControllerMVC {
   List<Post> post = [];
   List<PostComment> postComment = [];
   bool fetchingPost = true;
-  bool fetchingPostComment = true;
-
-  // ValueNotifier<Post>? postConfig;
-
-  GlobalKey<ScaffoldState>? scaffoldKey;
-
-  PostController() {
-    // postConfig = ValueNotifier(Post());
-
-    // getPost();
-
-    scaffoldKey = GlobalKey<ScaffoldState>();
-  }
-
-  // Future<List<Post>> getPost() async {
-  //   if (!fetchingPost) {
-  //     setState(() {
-  //       fetchingPost = true;
-  //     });
-  //   }
-  //   final res = await post_repo.getPostRepo();
-  //   post = res;
-
-  //   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-  //   postConfig!.notifyListeners();
-  //   print(res.toString());
-  //   setState(() {
-  //     fetchingPost = false;
-  //   });
-  //   print('==============================${res.first.title}');
-
-  //   return res;
-  // }
-
-  // Future<List<Post>> getComments() async {
-  //   if (!fetchingPost) {
-  //     setState(() {
-  //       fetchingPost = true;
-  //     });
-  //   }
-  //   final res = await post_repo.getPostComment();
-  //   post = res;
-
-  //   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-  //   postConfig!.notifyListeners();
-  //   print(res.toString());
-  //   setState(() {
-  //     fetchingPost = false;
-  //   });
-  //   print('==============================${res.first.title}');
-
-  //   return res;
-  // }
-
+  bool fetchingPostComment = true; 
+  
   Future<Post> getPost() async {
     if (!fetchingPost) {
       setState(() {
@@ -85,11 +33,27 @@ class PostController extends ControllerMVC {
     return res;
   }
 
-  void addPostComment(Map data) async {
+  void addPostComment(Map data, context) async {
     if (data.isEmpty) return;
 
     final alResponse = await post_repo.addComment(data);
 
-    print("|||||||||||||||||||||||||$alResponse");
+    if (alResponse == 200) {
+      Navigator.pop(context); 
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+            'Success',
+            style: TextStyle(fontSize: 20),
+          ),
+          backgroundColor: Colors.green));
+    } else {
+       Navigator.pop(context); 
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+            'An error occured',
+            style: TextStyle(fontSize: 20),
+          ),
+          backgroundColor: Colors.red));
+    }
   }
 }

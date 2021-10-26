@@ -35,4 +35,28 @@ class AlbumController extends ControllerMVC {
 
     return res;
   }
+
+    void addImage(Map data, context) async {
+    if (data.isEmpty) return;
+
+    final alResponse = await album_repo.addAlbumImage(data);
+
+    if (alResponse == 200) {
+      Navigator.pop(context); 
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+            'Success',
+            style: TextStyle(fontSize: 20),
+          ),
+          backgroundColor: Colors.green));
+    } else {
+       Navigator.pop(context); 
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+            'An error occured',
+            style: TextStyle(fontSize: 20),
+          ),
+          backgroundColor: Colors.red));
+    }
+  }
 }

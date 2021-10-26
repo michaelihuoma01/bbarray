@@ -29,13 +29,12 @@ Future<List<PostComment>> getPostComment() async {
   }).toList();
 }
 
-addComment(Map data) async {
+Future<int> addComment(Map data) async {
   var res = await http.put(
-    Uri.parse("https://jsonplaceholder.typicode.com/comments?postId=1"),
+    Uri.parse("https://jsonplaceholder.typicode.com/comments/1"),
     headers: headers,
     body: json.encode(data),
   );
-  final resData = json.decode(res.body);
 
-  print('===============$resData');
+  return res.statusCode;
 }
