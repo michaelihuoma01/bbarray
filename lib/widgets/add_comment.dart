@@ -25,7 +25,7 @@ class _AddCommentState extends State<AddComment> {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         child: Container(
-            height: 500,
+            height: 450,
             margin: EdgeInsets.all(30),
             width: double.infinity,
             decoration: BoxDecoration(
@@ -34,66 +34,69 @@ class _AddCommentState extends State<AddComment> {
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Column(children: [
-                      const Text('Add comment',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                      const SizedBox(height: 10),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextFormFieldWidget(
-                          hintText: 'Name',
-                          onChanged: (value) {
-                            name = value;
-                          },
+                    child: SingleChildScrollView(
+                                          child: Column(children: [
+                        const Text('Add comment',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: TextFormFieldWidget(
+                            hintText: 'Name',
+                            onChanged: (value) {
+                              name = value;
+                            },
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextFormFieldWidget(
-                          hintText: 'Email',
-                          onChanged: (value) {
-                            email = value;
-                          },
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: TextFormFieldWidget(
+                            hintText: 'Email',
+                            onChanged: (value) {
+                              email = value;
+                            },
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextFormFieldWidget(
-                          maxLines: 5,
-                          hintText: 'Comment',
-                          onChanged: (value) {
-                            comment = value;
-                          },
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: TextFormFieldWidget(
+                            maxLines: 5,
+                            hintText: 'Comment',
+                            onChanged: (value) {
+                              comment = value;
+                            },
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: ButtonWidget(
-                            title: 'Add',
-                            onPressed: () {
-                              print(widget.id);
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: ButtonWidget(
+                              title: 'Add',
+                              height: 40,
+                              onPressed: () {
+                                print(widget.id);
 
-                              widget.con!.addPostComment({
-                                'postId': 1,
-                                'id': widget.id! + 1,
-                                'name': name,
-                                'email': email,
-                                'body': comment
-                                
-                              }, context);
+                                widget.con!.addPostComment({
+                                  'postId': 1,
+                                  'id': widget.id! + 1,
+                                  'name': name,
+                                  'email': email,
+                                  'body': comment
+                                  
+                                }, context);
 
-                              // Navigator.pushAndRemoveUntil(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => LoginScreen()),
-                              //     (Route<dynamic> route) => false);
-                            }),
-                      )
-                    ])))));
+                                // Navigator.pushAndRemoveUntil(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => LoginScreen()),
+                                //     (Route<dynamic> route) => false);
+                              }),
+                        )
+                      ]),
+                    )))));
   }
 }

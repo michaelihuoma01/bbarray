@@ -43,7 +43,7 @@ class _AddPostState extends State<AddPost> {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         child: Container(
-            height: 400,
+            height: 350,
             margin: EdgeInsets.all(30),
             width: double.infinity,
             decoration: BoxDecoration(
@@ -52,92 +52,95 @@ class _AddPostState extends State<AddPost> {
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Column(children: [
-                      const Text('Add Image',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                      const SizedBox(height: 10),
-                      Center(
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 120,
-                              child: _profileImage == null
-                                      ? Container(
-                                          child: CircleAvatar(
-                                            radius: 25.0,
-                                            backgroundColor: Colors.grey,
-                                            backgroundImage:
-                                                NetworkImage('https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640'),
-                                          ),
-                                        )
-                                      : Container(
-                                child: CircleAvatar(
-                                  radius: 25.0,
-                                  backgroundColor: Colors.grey,
-                                  backgroundImage: FileImage(_profileImage!),
+                    child: SingleChildScrollView(
+                                          child: Column(children: [
+                        const Text('Add Image',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                        const SizedBox(height: 10),
+                        Center(
+                          child: Stack(
+                            children: [
+                              Container(
+                                height: 120,
+                                width: 120,
+                                child: _profileImage == null
+                                        ? Container(
+                                            child: CircleAvatar(
+                                              radius: 25.0,
+                                              backgroundColor: Colors.grey,
+                                              backgroundImage:
+                                                  NetworkImage('https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640'),
+                                            ),
+                                          )
+                                        : Container(
+                                  child: CircleAvatar(
+                                    radius: 25.0,
+                                    backgroundColor: Colors.grey,
+                                    backgroundImage: FileImage(_profileImage!),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Positioned.fill(
-                              child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(250))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: InkWell(
-                                          onTap: () {
-                                            pickImageFromGallery();
-                                          },
-                                          child: Icon(Icons.camera_alt_outlined,
-                                              size: 20)),
-                                    ),
-                                  )),
-                            ),
-                          ],
+                              Positioned.fill(
+                                child: Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(250))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: InkWell(
+                                            onTap: () {
+                                              pickImageFromGallery();
+                                            },
+                                            child: Icon(Icons.camera_alt_outlined,
+                                                size: 20)),
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextFormFieldWidget(
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: TextFormFieldWidget(
           
-                          hintText: 'Title',
-                          onChanged: (value) {
-                            title = value;
-                          },
+                            hintText: 'Title',
+                            onChanged: (value) {
+                              title = value;
+                            },
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: ButtonWidget(
-                            title: 'Add',
-                            onPressed: () {
-                              print(widget.id);
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: ButtonWidget(
+                              title: 'Add',
+                              height: 40,
+                              onPressed: () {
+                                print(widget.id);
 
-                              widget.con!.addImage({
-                                'albumId': 1,
-                                'id': widget.id! + 1,
-                                'title': title,
-                                'url': 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-                                'thumbnailUrl': 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'
-                              }, context);
+                                widget.con!.addImage({
+                                  'albumId': 1,
+                                  'id': widget.id! + 1,
+                                  'title': title,
+                                  'url': 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
+                                  'thumbnailUrl': 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'
+                                }, context);
 
-                              // Navigator.pushAndRemoveUntil(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => LoginScreen()),
-                              //     (Route<dynamic> route) => false);
-                            }),
-                      )
-                    ])))));
+                                // Navigator.pushAndRemoveUntil(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => LoginScreen()),
+                                //     (Route<dynamic> route) => false);
+                              }),
+                        )
+                      ]),
+                    )))));
   }
 }

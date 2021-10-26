@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 40),
             ButtonWidget(
                 title: 'Discover an album',
+                height: 80,
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -34,13 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ));
                 }),
             const SizedBox(height: 20),
-            ButtonWidget(title: 'Discover a post', onPressed: () {
-               Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PostScreen(),
-                      ));
-            },),
+            ButtonWidget(
+              title: 'Discover a post',
+              height: 80,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PostScreen(),
+                    ));
+              },
+            ),
           ],
         ),
       ),

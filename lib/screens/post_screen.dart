@@ -81,10 +81,13 @@ class _PostScreenState extends StateMVC<PostScreen> {
                     // height: 200,
                     child: ListView.builder(
                       itemBuilder: (BuildContext context, int index) {
-                        PostComment? post = _postComments![index];
+                        PostComment? post = _postComments?[index];
+                        if (_postComments == null) {
+                          return Container();
+                        }
                         return CommentTile(post: post);
                       },
-                      itemCount: _postComments!.length,
+                      itemCount: _postComments?.length,
                     ),
                   ),
                 ],
