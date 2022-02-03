@@ -1,2 +1,2 @@
 # bbarray
-Interview Task
+API endpoints testing
